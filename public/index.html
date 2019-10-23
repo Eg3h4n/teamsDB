@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test</title>
+  </head>
+  <body>
+    <button id="getPlayersBtn">Get Players</button>
+    <div id="content"></div>
+    <script>
+      const getPlayersBtn = document.getElementById("getPlayersBtn");
+      const content = document.getElementById("content");
+
+      function getPlayersFromServer() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState === 3) {
+            content.innerHTML = "Loading...";
+          }
+          if (this.status === 200 && this.readyState === 4) {
+            setTimeout(() => {
+              content.innerHTML = "";
+              var playerList = document.createElement("ul");
+
+              var playersArray = JSON.parse(this.response);
+
+              playersArray.forEach(player => {
+                var playerItem = document.createElement("li");
+                playerItem.innerHTML = player.name;
+                playerList.append(playerItem);
+              });
+              content.append(playerList);
+            }, 2000);
+          }
+        };
+        xhttp.open("GET", "http://localhost:3000/players");
+        xhttp.send();
+      }
+
+      getPlayersBtn.addEventListener("click", function() {
+        getPlayersFromServer();
+      });
+    </script>
+  </body>
+</html>

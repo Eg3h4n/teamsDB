@@ -1,0 +1,6 @@
+{
+  "name": "Teams DB REST API",
+  "mongodb": {
+    "host": ""
+  }
+}
