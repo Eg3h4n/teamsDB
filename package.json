@@ -14,7 +14,7 @@
   "author": "Egehan Gur",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "config": "^3.2.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
